@@ -1,10 +1,11 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from .models import Kiosk
 from .serializers import KioskSerializer
 
 
 class KioskList(generics.ListAPIView):
+    permission_classes = (IsAuthenticated, )
     queryset = Kiosk.objects.all()
     serializer_class = KioskSerializer
 
